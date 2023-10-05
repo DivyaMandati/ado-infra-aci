@@ -1,0 +1,28 @@
+name: $(Build.DefinitionName)-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+- main
+
+pool:
+   vmImage: 'ubuntu-latest'
+  
+variables:
+  - group: common
+
+stages:
+- stage: Dev  
+  jobs:
+  - job : TerraformPlan
+    steps:
+
+    - script: 'terraform -chdir=terraform/ init -input=false'
+      displayName: 'Init'
+  
+    - script: 'terraform -chdir=terraform/ validate'
+      displayName: 'Validate'
+  
+    - script: 'terraform -chdir=terraform/ plan -var="ARM_CLIENT_ID=$(ARM_CLIENT_ID)" -var="ARM_CLIENT_SECRET=$(ARM_CLIENT_SECRET)" -var="ARM_TENANT_ID=$(ARM_TENANT_ID)"  -var="ARM_SUBSCRIPTION_ID=$(ARM_SUBSCRIPTION_ID)"'
+      displayName: 'Plan'
+  
+    - script: 'terraform -chdir=terraform/ apply -auto-approve -var="ARM_CLIENT_ID=$(ARM_CLIENT_ID)" -var="ARM_CLIENT_SECRET=$(ARM_CLIENT_SECRET)" -var="ARM_TENANT_ID=$(ARM_TENANT_ID)"  -var="ARM_SUBSCRIPTION_ID=$(ARM_SUBSCRIPTION_ID)" -input=false'
+      displayName: 'Apply'
