@@ -11,7 +11,7 @@ variable "ARM_TENANT_ID"        {}
 variable "ARM_CLIENT_ID"        {}
 variable "ARM_CLIENT_SECRET"    {}
 
-variable "specific_tags"        { default = "" }
+variable "specific_tags"        { default = {} }
 variable "main_project"         { default = "calc" }
 variable "sub_project"          { default = "01" }
 variable "location"             { default = "uksouth" } # https://github.com/claranet/terraform-azurerm-regions/blob/master/regions.tf
