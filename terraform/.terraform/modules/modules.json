@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"aci","Source":"../modules/aci","Dir":"../modules/aci"},{"Key":"resource_group","Source":"../modules/resourcegroup","Dir":"../modules/resourcegroup"},{"Key":"resource_group.azure_region","Source":"registry.terraform.io/claranet/regions/azurerm","Version":"7.0.0","Dir":".terraform/modules/resource_group.azure_region"},{"Key":"","Source":"","Dir":"."}]}
